@@ -1,0 +1,340 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Contagem</ion-title>
+    <ion-row floating="right">
+
+      <ion-col>
+        <ion-item padding="0px">
+        <img  src="../assets/imagens/transito.png" width="70px" height="60px">
+        <ion-toggle (ionChange)="ocorrencias('transito')"></ion-toggle>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+        <img src="../assets/imagens/sigapare.png" width="80px" height="45px">
+        <ion-toggle (ionChange)="ocorrencias('sigapare')"></ion-toggle>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item>
+        <img src="../assets/imagens/chuva.png" width="45px" height="45px">
+        <ion-toggle (ionChange)="ocorrencias('chuva')"></ion-toggle>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+    <!-- <ion-row>
+
+      <ion-col>
+        <ion-button name="auto" class="div" (click)="contador('auto')" color="azul" > 
+        Auto <br> ({{contados('auto')}})
+        </ion-button>
+      </ion-col>
+      
+      <ion-col>          
+        <ion-button name="motos" block class="div"  (click)="contador('motos')" color="vermelho">
+           Motos <br> ({{contados('motos')}})
+        </ion-button>  
+      </ion-col>
+  
+      <ion-col>
+          <ion-button name="onibus" class="div" (click)="contador('onibus')" color="laranja">  
+             Onibus <br> ({{contados('onibus')}}) 
+          </ion-button>
+      </ion-col>
+    
+      <ion-col>
+        <ion-button name="caminhao" class="div" (click)="contador('caminhao')" color="verde">
+           Caminhao <br> ({{contados('caminhao')}}) 
+        </ion-button>
+      </ion-col>
+    
+    </ion-row> 
+  -->
+     <ion-button style="width: 100px; height: 50px;" (click)="limparCache()" color='danger'>
+      Limpar
+    </ion-button>   
+    
+  
+    <ion-row>
+        
+      <ion-col>
+        <ion-button id="auto" class="div" (click)="contador('auto')" color="tertiary"> 
+        Auto <br> ({{contados('auto')}})
+        </ion-button>
+      </ion-col>
+      
+      <ion-col>          
+        <ion-button id="utilitario" class="div utilitario"  (click)="contador('utilitario')" color="tertiary">
+          Auto <br> Utilitario <br> ({{contados('utilitario')}})    
+        </ion-button>  
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="auto3E" class="div" (click)="contador('auto3E')" color="tertiary">  
+            Auto <br> 3 Eixos <br> ({{contados('auto3E')}})
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-button id="auto4E" class="div" (click)="contador('auto4E')" color="tertiary">
+          Auto <br> 4 Eixos <br> ({{contados('auto4E')}})
+        </ion-button>
+      </ion-col>
+
+    </ion-row> 
+    
+    <ion-row>
+
+      <ion-col>
+          <ion-button id="onibus2E" class="div" (click)="contador('onibus2E')" color="danger"> 
+            Onibus <br> 2 Eixos <br> ({{contados('onibus2E')}})
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="onibus3E" class="div" (click)="contador('onibus3E')" color="danger"> 
+            Onibus <br> 3 Eixos <br> ({{contados('onibus3E')}})
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="onibus4E" class="div" (click)="contador('onibus4E')" color="danger"> 
+            Onibus <br> 4 Eixos <br> ({{contados('onibus4E')}})
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="veiculoOficial" class="div" (click)="contador('veiculoOficial')" color="laranja"> 
+            Veiculo <br> Oficial <br> ({{contados('veiculoOficial')}})
+          </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+          <ion-button id="veiculoEspecial" class="div" (click)="contador('veiculoEspecial')" color="success"> 
+            Veiculo <br> Especial <br> ({{contados('veiculoEspecial')}}) 
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="motos" class="div" (click)="contador('motos')" color="dark"> 
+            Motos <br> ({{contados('motos')}}) 
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="cLeve2E" class="div" (click)="contador('cLeve2E')" color="warning"> 
+            CAM Leve<br> 2E <br> ({{contados('cLeve2E')}}) 
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c2E" class="div" (click)="contador('c2E')" color="light"> 
+            CAM 2E<br> ({{contados('c2E')}})
+          </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+          <ion-button id="c3R" class="div" (click)="contador('c3R')" color="laranja"> 
+            CAM 3 / 0S<br> ({{contados('c3R')}})
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c31S" class="div" (click)="contador('c31S')" color="laranja"> 
+            CAM 3 / 1S<br> ({{contados('c31S')}}) 
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c4R" class="div" (click)="contador('c4R')" color="primary"> 
+            CAM 4 / 0S<br> ({{contados('c4R')}}) 
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c41S" class="div" (click)="contador('c41S')" color="primary"> 
+            CAM 4 / 1S<br> ({{contados('c41S')}})  
+          </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+          <ion-button id="c42S" class="div" (click)="contador('c42S')"  color="primary"> 
+            CAM 4 / 2S<br> ({{contados('c42S')}})
+          </ion-button>
+      </ion-col>
+    
+      <ion-col>
+          <ion-button id="c5R" class="div" (click)="contador('c5R')" color="success"> 
+            CAM 5 / 0S<br> ({{contados('c5R')}})
+          </ion-button>
+      </ion-col>
+    
+      <ion-col>
+          <ion-button id="c51S" class="div" (click)="contador('c51S')" color="success"> 
+            CAM 5 / 1S<br> ({{contados('c51S')}}) 
+          </ion-button>
+      </ion-col>
+    
+      <ion-col>
+          <ion-button id="c52S" class="div" (click)="contador('c52S')" color="success"> 
+            CAM 5 / 2S<br> ({{contados('c52S')}})
+          </ion-button>
+      </ion-col>
+      
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+          <ion-button id="c6R" class="div" (click)="contador('c6R')" color="danger"> 
+            CAM 6 / 0S<br> ({{contados('c6R')}}) 
+          </ion-button>
+      </ion-col>
+    
+      <ion-col>
+          <ion-button id="c61S" class="div" (click)="contador('c61S')" color="danger"> 
+            CAM 6 / 1S<br> ({{contados('c61S')}})
+          </ion-button>
+      </ion-col>
+    
+      <ion-col>
+          <ion-button id="c62S" class="div" (click)="contador('c62S')" color="danger"> 
+            CAM 6 / 2S<br> ({{contados('c62S')}})
+          </ion-button>
+      </ion-col>
+    
+      <ion-col>
+          <ion-button id="c63S" class="div" (click)="contador('c63S')" color="danger"> 
+            CAM 6 / 3S<br> ({{contados('c63S')}})
+          </ion-button>
+      </ion-col>
+      
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+          <ion-button id="c7R" class="div" (click)="contador('c7R')" color="tertiary"> 
+            CAM 7 / 0S<br> ({{contados('c7R')}})
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c71S" class="div" (click)="contador('c71S')" color="tertiary"> 
+            CAM 7 / 1S<br> ({{contados('c71S')}})
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c72S" class="div" (click)="contador('c72S')" color="tertiary"> 
+            CAM 7 / 2S<br> ({{contados('c72S')}}) 
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c73S" class="div" (click)="contador('c73S')" color="tertiary"> 
+            CAM 7 / 3S<br> ({{contados('c73S')}})
+          </ion-button>
+      </ion-col>
+      
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+          <ion-button id="c8R" class="div" (click)="contador('c8R')" color="laranja"> 
+            CAM 8 / 0S<br> ({{contados('c8R')}}) 
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c81S" class="div" (click)="contador('c81S')" color="laranja"> 
+            CAM 8 / 1S<br> ({{contados('c81S')}}) 
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c82S" class="div" (click)="contador('c82S')" color="laranja"> 
+            CAM 8 / 2S<br> ({{contados('c82S')}})
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c83S" class="div" (click)="contador('c83S')" color="laranja"> 
+            CAM 8 / 3S<br> ({{contados('c83S')}}) 
+          </ion-button>
+      </ion-col>
+      
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+          <ion-button id="c84S" class="div" (click)="contador('c84S')" color="laranja"> 
+            CAM 8 / 4S<br> ({{contados('c84S')}})
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c9R" class="div" (click)="contador('c9R')" color="success"> 
+            CAM 9 / 0S<br> ({{contados('c9R')}}) 
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c91S" class="div" (click)="contador('c91S')" color="success"> 
+            CAM 9 / 1S<br> ({{contados('c91S')}})
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c92S" class="div" (click)="contador('c92S')" color="success"> 
+            CAM 9 / 2S<br> ({{contados('c92S')}})
+          </ion-button>
+      </ion-col>
+      
+    </ion-row>
+
+    <ion-row >
+
+      <ion-col>
+          <ion-button id="c93S" class="div" (click)="contador('c93S')" color="success"> 
+            CAM 9 / 3S<br> ({{contados('c93S')}}) 
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+          <ion-button id="c94S" class="div" (click)="contador('c94S')" color="success"> 
+            CAM 9 / 4S<br> ({{contados('c94S')}})
+          </ion-button>
+      </ion-col>
+      
+      <ion-col></ion-col><ion-col></ion-col>
+    </ion-row>
+
+  </ion-grid> 
+
+</ion-content>
