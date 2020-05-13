@@ -97,25 +97,19 @@ export class Tab2Page {
 
                   formData.append("pesquisador", pesq);
                   formData.append("supervisor", supe);
-                  formData.append("contagem", val);
+                  formData.append("contagem", JSON.stringify(val));
                   formData.append("idDevice", id);
                   
                   this.inserir.inserirDados(formData).subscribe((data: any) => {
-
-                    if(data.sucesso == true){
-                      this.limparCache();  
+                    
                       this.presentToast();
                       this.ocultaCarregando();
-                    }else{
-
-                      this.toastErro();
-                      this.ocultaCarregando();               
-                    }
+                    
 
                   }, (error) => {
-                    this.limparCache();  
-                    this.presentToast();
-                    this.ocultaCarregando();
+                    
+                    this.toastErro();
+                      this.ocultaCarregando();
                   });
                 });              
             });  
@@ -190,98 +184,10 @@ export class Tab2Page {
   limparCache(){
     this.storage.set("listaForm", "").then(() =>{
       this.storage.set("historico", "").then(() =>{
-       
-        this.tab.contagem= {
-          date: '',
-          time: '',
-          transito: 'NÃO', 
-          sigapare: 'NÃO', 
-          chuva: 'NÃO',
-          auto: 0,
-          utilitario: 0,
-          auto3E: 0,
-          auto4E: 0,
-          onibus2E: 0,
-          onibus3E: 0,
-          onibus4E: 0,
-          veiculoOficial: 0,
-          veiculoEspecial: 0,
-          motos: 0,
-          cLeve2E: 0,
-          c2E: 0,
-          c3R: 0,
-          c31S: 0,
-          c4R: 0,
-          c41S: 0,
-          c42S: 0,
-          c5R: 0,
-          c51S: 0,
-          c52S: 0,
-          c6R: 0,
-          c61S: 0,
-          c62S: 0,
-          c63S: 0,
-          c7R: 0,
-          c71S: 0,
-          c72S: 0,
-          c73S: 0,
-          c8R: 0,
-          c81S: 0,
-          c82S: 0,
-          c83S: 0,
-          c84S: 0,
-          c9R: 0,
-          c91S: 0,
-          c92S: 0,
-          c93S: 0,
-          c94S: 0
-        };
+        
+        this.tab.array = [];
+            
         this.tab.conta= {
-          date: '',
-          time: '',
-          transito: 'NÃO', 
-          sigapare: 'NÃO', 
-          chuva: 'NÃO',
-          auto: 0,
-          utilitario: 0,
-          auto3E: 0,
-          auto4E: 0,
-          onibus2E: 0,
-          onibus3E: 0,
-          onibus4E: 0,
-          veiculoOficial: 0,
-          veiculoEspecial: 0,
-          motos: 0,
-          cLeve2E: 0,
-          c2E: 0,
-          c3R: 0,
-          c31S: 0,
-          c4R: 0,
-          c41S: 0,
-          c42S: 0,
-          c5R: 0,
-          c51S: 0,
-          c52S: 0,
-          c6R: 0,
-          c61S: 0,
-          c62S: 0,
-          c63S: 0,
-          c7R: 0,
-          c71S: 0,
-          c72S: 0,
-          c73S: 0,
-          c8R: 0,
-          c81S: 0,
-          c82S: 0,
-          c83S: 0,
-          c84S: 0,
-          c9R: 0,
-          c91S: 0,
-          c92S: 0,
-          c93S: 0,
-          c94S: 0
-        };
-        this.tab.count= {
           date: '',
           time: '',
           transito: 'NÃO', 

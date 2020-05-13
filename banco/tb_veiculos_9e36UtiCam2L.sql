@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `comap_cvc_usuario`.`tb_veiculos_9e36UtiCam2L` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-SELECT * FROM tb_veiculos_9e36UtiCam2L;
+select * from tb_veiculos_9e36UtiCam2L;
 
 truncate tb_veiculos_9e36uticam2L;
 

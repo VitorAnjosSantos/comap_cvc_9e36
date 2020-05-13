@@ -6,5 +6,4 @@ define("db","comap_cvc_usuario");
 
 $conexao= mysqli_connect(host,usuario,senha,db) or die("NÃO FOI POSSIVEL CONECTAR");
 
-
 ?>

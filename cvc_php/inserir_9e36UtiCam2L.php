@@ -195,13 +195,10 @@
             curl_exec($curl);
             curl_close($curl);
     
-            echo '{sucesso: true}';
             //print_r($contagem);
     
         }
-        else{
-            echo'{"sucesso": false}';
-        }
+        
 
         
     
