@@ -34,6 +34,7 @@
 		$count = 0;
 		$count2 = 0;
 		$total = [];
+		$somaTotal = '';
 
 		foreach($resultadoDaConsulta as $registro) 
 			{ 
@@ -76,7 +77,9 @@
 			$totalHorizontal = "\n,,,,,Total,";
 			for($i = 0; $i < count($total[0]); $i++){
 				$totalHorizontal .= $total[0][$i].",";
+				$somaTotal = array_sum($total[0]);
 			}
+			$totalHorizontal .= $somaTotal;
 			$escreve = fwrite($fp, $totalHorizontal);	
 		
 		// Exibe o vettor JSON
