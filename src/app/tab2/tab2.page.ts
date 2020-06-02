@@ -105,10 +105,9 @@ export class Tab2Page {
                       this.presentToast();
                       this.ocultaCarregando();
                     
-
                   }, (error) => {
                     
-                    this.toastErro();
+                      this.toastErro();
                       this.ocultaCarregando();
                   });
                 });              

@@ -1,15 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import { NavController} from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from '@ionic/angular';
-import { ToastController } from '@ionic/angular';
-import { InserirNoBancoService } from '../services/database/inserir-no-banco.service';
-//import { GerarPlanilhaService } from '../services/api/gerar-planilha.service';
-import { AlertController } from '@ionic/angular';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
 
 @Component({
   selector: 'app-tab1',
@@ -33,20 +26,20 @@ export class Tab1Page implements OnInit {
   geo = {latitude: 0, longitude: 0};
   array: any;
 
-  constructor(private navCtrl: NavController, 
-              private storage: Storage,
-              private inserir: InserirNoBancoService,
-              //private gerar: GerarPlanilhaService,
+  constructor(private storage: Storage,
               public loadingController: LoadingController,
-              private toastController: ToastController,
-              private alertController: AlertController,
               private nativeAudio: NativeAudio,
               private geoLocation: Geolocation,
 
             ) 
             {
-            
-   this.count= {
+  }
+
+  ngOnInit() {
+    
+    this.nativeAudio.preloadSimple('uniqueId1', 'assets/audios/pop.mp3');
+
+    this.count= {
       date: '',
       time: '',
       transito: 'NÃO', 
@@ -103,7 +96,7 @@ export class Tab1Page implements OnInit {
         console.log(this.array); 
       }else{  
         this.storage.set("listaForm", "").then(() => { 
-          
+          this.array = [];
         });
       }
     });
@@ -120,7 +113,11 @@ export class Tab1Page implements OnInit {
       
     });  
 
-    this.geolocaliza();
+    /* this.geolocaliza(); */
+    
+    setInterval(() => { 
+      this.setValor();
+   }, 2000)
   }
 
   geolocaliza(){
@@ -169,18 +166,12 @@ export class Tab1Page implements OnInit {
     });
   }
 
-  ngOnInit() {
-    
-    this.nativeAudio.preloadSimple('uniqueId1', 'assets/audios/pop.mp3');
-    
-  }
-
   formataZerosEsquerda(valor: number) {
     return valor > 9 ? valor : "0" + valor;
   }
 
   getValor(tipo: any){
-    return new Promise ((resolve, reject) => {
+    
       
       this.geolocaliza();
 
@@ -210,53 +201,37 @@ export class Tab1Page implements OnInit {
       aux["date"] = date;
       aux["time"] = time;
 
-      resolve(aux); 
-             
-    })
+     
+      this.array = this.array.concat(aux);
   }
 
-  async setValor(val:any){
-    return new Promise ((resolve, reject) => {
-      
-      this.array = this.array.concat(val);
+  
+
+  setValor(){
+  
       this.storage.set("listaForm", this.array).then((data)=>{
-         
-        resolve(data);
-        
+          this.setHistorico();
+          console.log(data);
       })
-    });
+   
   }
 
-  async  setHistorico(){
-    return new Promise ((resolve, reject) => {
-      this.storage.set("historico", this.conta).then((val: any) => {
-       
-        
-        resolve('2');
-        
-      });
-    });
-    
-  }
+  setHistorico(){
 
-  audio(){
-    return new Promise ((resolve, reject) => {
-      this.nativeAudio.play('uniqueId1').then(()=> {
+    this.storage.set("historico", this.conta).then((val: any) => {
         
-        resolve("Ok");
       });
-    });
-  }  
+   
+  }
 
   async contador(tipo: any){
+      this.nativeAudio.play('uniqueId1');
+      
       this.conta[tipo]++;     
 
-        let d = await this.audio();
-        let a = await this.getValor(tipo);
-        let b = await this.setValor(a);
-        let c = await this.setHistorico();
-      
-        console.log(b);  
+        /* let d = await this.audio(); */
+       this.getValor(tipo);
+     
   }
 
   contados(tipo: string){
